@@ -2,6 +2,7 @@
 /**
  * Created by shayan on 18.07.16.
  */
+
 function changeBackgroundColor() {
     document.getElementById("wrapper").style.backgroundColor="red";
 }
@@ -18,7 +19,7 @@ function createCalendar(){
     //Adding name of the month and year to the first row
     var firstRow =document.createElement("tr");
     var header = document.createElement("th");
-    header.colSpan = "100";
+    header.colSpan = "32";
     header.innerHTML = moment().startOf("month").format("MMMM YYYY");
     firstRow.appendChild(header);
     table.appendChild(firstRow);
@@ -49,9 +50,6 @@ function createCalendar(){
     }
 
     wrapper.appendChild(table);
-}
-function getValue(){
-    this.innerHTML = "Clicked";
 }
 
 
