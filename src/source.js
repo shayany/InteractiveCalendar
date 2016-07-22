@@ -141,6 +141,7 @@ $("#deleteModalButton").click(function(){
     $(cells).removeClass("shiftCells");
     $(cells).removeClass("shiftStartCell");
     $(cells).removeClass("shiftEndCell");
+    $(cells).removeClass("ui-selected"); //Unselect the cells after deletion
     $(cells).addClass("cellsBorder");
     $(cells).attr("neededDriver","0");
     $(cells).attr("shiftID","Y-MM-DD-SH-EH");
