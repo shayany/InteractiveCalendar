@@ -64,15 +64,28 @@ function createCalendar() {
         if (event.which == 3 && $(this).hasClass("ui-selected")) {
             var selectedCells = document.getElementsByClassName("ui-selected");
             document.getElementById("modalDate").setAttribute("value",selectedCells[0].getAttribute("date"));
-            document.getElementById("modalStartHour").value = selectedCells[0].getAttribute("hour");
-            document.getElementById("modalEndHour").value = selectedCells[selectedCells.length-1].getAttribute("hour");
+
+            var patternForGroupID=/\d{4}-\d{1,2}-\d{1,2}-(\d{1,2})-(\d{1,2})/;
+            if(patternForGroupID.test($(this).attr("shiftid").toString())){
+                var shiftID=$(this).attr("shiftid").toString();
+                var result = patternForGroupID.exec(shiftID);
+
+                document.getElementById("modalStartHour").value = result[1].toString();
+                document.getElementById("modalEndHour").value = result[2].toString();
+            }else
+            {
+                document.getElementById("modalStartHour").value = selectedCells[0].getAttribute("hour");
+                document.getElementById("modalEndHour").value = selectedCells[selectedCells.length-1].getAttribute("hour");
+            }
+
+
             //document.getElementById("modalDriverNumber").value = selectedCells[selectedCells.length-1].getAttribute("neededDriver");
+
             if (selectedCells[selectedCells.length-1].getAttribute("neededDriver") == 0 )
             {
                 document.getElementById("modalDriverNumber").value = 1;
             } else {
                 document.getElementById("modalDriverNumber").value = selectedCells[selectedCells.length-1].getAttribute("neededDriver");
-
             }
 
             //Active the delete button in the modal
@@ -100,27 +113,36 @@ function createCalendar() {
 
 
 $("#saveModalButton").click(function () {
+
+
+    if ($("#modalShiftID").val().toString()!=false.toString())// For editing the shift -First delete the shift and then create
+    {
+        deleteCells($("#modalShiftID").val().toString());
+    }
     var shiftDate = document.getElementById("modalDate").value;
-    var startHour = document.getElementById("modalStartHour").value;
-    var endtHour = document.getElementById("modalEndHour").value;
-    var driverNumber = document.getElementById("modalDriverNumber").value;
-    shiftID = shiftDate+'-'+startHour+'-'+endtHour; //Creating unigue ID for each shift
-    var cells = $("td[date='"+shiftDate+"']");
-    for(var i = 0; i < 24; i++){
-        if (cells[i].getAttribute("hour") >= startHour && cells[i].getAttribute("hour") <= endtHour){
+    var startHour = Number(document.getElementById("modalStartHour").value);
+    var endtHour = Number(document.getElementById("modalEndHour").value);
+    var driverNumber = Number(document.getElementById("modalDriverNumber").value);
+
+    shiftID = shiftDate + '-' + startHour + '-' + endtHour; //Creating unigue ID for each shift
+
+    var cells = $("td[date='" + shiftDate + "']");
+
+    for (var i = 0; i < 24; i++) {
+        if (Number(cells[i].getAttribute("hour")) >= startHour && Number(cells[i].getAttribute("hour")) <= endtHour) {
             $(cells[i]).removeClass("cellsBorder");
-            if (cells[i].getAttribute("hour") == startHour){
+            if (Number(cells[i].getAttribute("hour")) == startHour) {
                 //cells[i].className += " shiftStartCell";
                 $(cells[i]).addClass("shiftStartCell");
             }
-            if (cells[i].getAttribute("hour") == endtHour){
+            if (Number(cells[i].getAttribute("hour")) == endtHour) {
                 $(cells[i]).addClass("shiftEndCell");
                 //cells[i].className += " shiftEndCell";
             }
 
-            document.getElementById("modalShiftID").setAttribute("value",shiftID);
-            cells[i].setAttribute("neededDriver",driverNumber);
-            cells[i].setAttribute("shiftID",shiftID);
+            document.getElementById("modalShiftID").setAttribute("value", shiftID);
+            cells[i].setAttribute("neededDriver", driverNumber);
+            cells[i].setAttribute("shiftID", shiftID);
             $(cells[i]).addClass("availableShift");
             $(cells[i]).addClass("shiftCells");
             //cells[i].className+=" availableShift";
@@ -129,14 +151,27 @@ $("#saveModalButton").click(function () {
         }
     }
     document.getElementById("deleteModalButton").disabled = false;
-
+    $("#confirm").modal("toggle");
 });
 
 
-$("#deleteModalButton").click(function(){
+$("#deleteModalButton").click(function () {
+    deleteCells(false);
+});
+
+
+function deleteCells(shiftID){
     //modalShiftID
     //alert($("[shiftID="+$("#modalShiftID").val()+"]").length);
-    var cells=$("[shiftID="+$("#modalShiftID").val()+"]");
+
+    if (shiftID.toString() == false.toString()){
+        var cells=$("[shiftID="+$("#modalShiftID").val()+"]");
+    }
+    else
+    {
+        var cells=$("[shiftID="+shiftID.toString()+"]");
+    }
+
     $(cells).removeClass("availableShift");
     $(cells).removeClass("shiftCells");
     $(cells).removeClass("shiftStartCell");
@@ -147,13 +182,12 @@ $("#deleteModalButton").click(function(){
     $(cells).attr("shiftID","Y-MM-DD-SH-EH");
 
     /*for(var i=0;i<cells.length;i++){
-        $(cells[i]).removeClass("availableShift");
-        $(cells[i]).removeClass("shiftCells");
-        $(cells[i]).removeClass("shiftStartCell");
-        $(cells[i]).removeClass("shiftEndCell");
-        $(cells[i]).addClass("cellsBorder");
-        cells[i].setAttribute("neededDriver","0");
-        cells[i].setAttribute("shiftID","Y-MM-DD-SH-EH");
-    }*/
-
-});
+     $(cells[i]).removeClass("availableShift");
+     $(cells[i]).removeClass("shiftCells");
+     $(cells[i]).removeClass("shiftStartCell");
+     $(cells[i]).removeClass("shiftEndCell");
+     $(cells[i]).addClass("cellsBorder");
+     cells[i].setAttribute("neededDriver","0");
+     cells[i].setAttribute("shiftID","Y-MM-DD-SH-EH");
+     }*/
+}
