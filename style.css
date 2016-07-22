@@ -3,6 +3,37 @@
     padding: 0;
 }
 
+.ui-selecting {
+    background: #FFFF66;
+}
+
+.ui-selected {
+    background: #FECA40;
+}
+
+.availableShift {
+    /*background: #CCEEFF ;*/
+    background-color: #5bc0de;
+}
+
+
+.shiftCells{
+    border-right: solid 2px green;
+    border-left: solid 2px green;
+}
+.shiftStartCell{
+    border-top: solid 2px green;
+    border-right: solid 2px green;
+    border-left: solid 2px green;
+    border-radius: 25px  25px 0 0;
+}
+.shiftEndCell{
+    border-bottom: solid 2px green;
+    border-right: solid 2px green;
+    border-left: solid 2px green;
+    border-radius: 0 0 25px  25px;
+}
+
 .noselect {
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none;   /* Chrome/Safari/Opera */
@@ -10,15 +41,8 @@
     -moz-user-select: none;      /* Firefox */
     -ms-user-select: none;       /* Internet Explorer/Edge */
     user-select: none;           /* Non-prefixed version, currently
-                                  not supported by any browser */
+                                      not supported by any browser */
 }
-/*#rectangle{
-    width: 50px;
-    height: 50px;
-    background: yellow;
-    text-align: center;
-    vertical-align: middle;
-}*/
 
 #wrapper{
     width: 95%;
@@ -28,24 +52,27 @@
 }
 
 table{
+    width: auto;
     background-color: #eeeeee;
-    border: 1px solid black;
-    border-collapse: collapse;
-}
-
-td, th{
-    width: 50px;
-    height: 50px;
-    border: 1px solid #737373;
+    /*border: 1px solid black;
+    border-collapse: collapse;*/
 }
 
 th{
+    width: 50px;
+    height: 50px;
+    border: 1px solid #737373;
     font-weight: normal;
     font-size: small;
 }
 td{
+    width: 50px;
+    height: 50px;
     text-align: right;
     vertical-align: top;
     font-size: small;
 }
 
+.cellsBorder{
+    border: 1px solid #737373;
+}

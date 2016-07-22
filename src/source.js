@@ -58,12 +58,6 @@ function createCalendar() {
     wrapper.appendChild(table);
 
 
-    //Adding selectable feature to to table
-    $("table").selectable({
-        filter: 'td:not(.noselect)'
-    });
-
-
     //adding modal feature to td
     $('td').mousedown(function (event) {
         //right click has the event value of three
@@ -94,7 +88,15 @@ function createCalendar() {
             $("#confirm").modal("show");
         }
     });
+
+
+    //Adding selectable feature to to table
+    $("table").selectable({
+        filter: 'td:not(.noselect)'
+    });
 }
+
+
 
 
 $("#saveModalButton").click(function () {
@@ -119,7 +121,6 @@ $("#saveModalButton").click(function () {
             document.getElementById("modalShiftID").setAttribute("value",shiftID);
             cells[i].setAttribute("neededDriver",driverNumber);
             cells[i].setAttribute("shiftID",shiftID);
-
             $(cells[i]).addClass("availableShift");
             $(cells[i]).addClass("shiftCells");
             //cells[i].className+=" availableShift";
@@ -136,7 +137,15 @@ $("#deleteModalButton").click(function(){
     //modalShiftID
     //alert($("[shiftID="+$("#modalShiftID").val()+"]").length);
     var cells=$("[shiftID="+$("#modalShiftID").val()+"]");
-    for(var i=0;i<cells.length;i++){
+    $(cells).removeClass("availableShift");
+    $(cells).removeClass("shiftCells");
+    $(cells).removeClass("shiftStartCell");
+    $(cells).removeClass("shiftEndCell");
+    $(cells).addClass("cellsBorder");
+    $(cells).attr("neededDriver","0");
+    $(cells).attr("shiftID","Y-MM-DD-SH-EH");
+
+    /*for(var i=0;i<cells.length;i++){
         $(cells[i]).removeClass("availableShift");
         $(cells[i]).removeClass("shiftCells");
         $(cells[i]).removeClass("shiftStartCell");
@@ -144,6 +153,6 @@ $("#deleteModalButton").click(function(){
         $(cells[i]).addClass("cellsBorder");
         cells[i].setAttribute("neededDriver","0");
         cells[i].setAttribute("shiftID","Y-MM-DD-SH-EH");
-    }
+    }*/
 
 });
