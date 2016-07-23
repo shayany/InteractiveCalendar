@@ -92,12 +92,12 @@ function createCalendar() {
             if( selectedCells[selectedCells.length-1].getAttribute("shiftID") != "Y-MM-DD-SH-EH")
             {
                 document.getElementById("modalShiftID").setAttribute("value",selectedCells[0].getAttribute("shiftid"));
-                document.getElementById("deleteModalButton").disabled = false;
+                //document.getElementById("deleteModalButton").disabled = false;
             }else{
                 document.getElementById("modalShiftID").setAttribute("value",false.toString());
-                document.getElementById("deleteModalButton").disabled = true;
+                //document.getElementById("deleteModalButton").disabled = true;
             }
-
+            document.getElementById("deleteModalButton").disabled = false;
             $("#confirm").modal("show");
         }
     });
@@ -119,6 +119,7 @@ $("#saveModalButton").click(function () {
     {
         deleteCells($("#modalShiftID").val().toString());
     }
+
     var shiftDate = document.getElementById("modalDate").value;
     var startHour = Number(document.getElementById("modalStartHour").value);
     var endtHour = Number(document.getElementById("modalEndHour").value);
@@ -127,6 +128,12 @@ $("#saveModalButton").click(function () {
     shiftID = shiftDate + '-' + startHour + '-' + endtHour; //Creating unigue ID for each shift
 
     var cells = $("td[date='" + shiftDate + "']");
+
+    if(startHour>endtHour){
+        var temp=startHour;
+        startHour=endtHour;
+        endtHour=temp;
+    }
 
     for (var i = 0; i < 24; i++) {
         if (Number(cells[i].getAttribute("hour")) >= startHour && Number(cells[i].getAttribute("hour")) <= endtHour) {
@@ -150,6 +157,8 @@ $("#saveModalButton").click(function () {
             //cells[i].style.background="red";
         }
     }
+
+
     document.getElementById("deleteModalButton").disabled = false;
     $("#confirm").modal("toggle");
 });
