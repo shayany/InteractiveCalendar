@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ab3fb832-be57-4238-b251-6e82b8182490" name="Default" comment="Adding regex">
+    <list default="true" id="ab3fb832-be57-4238-b251-6e82b8182490" name="Default" comment="Add event">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/source.js" afterPath="$PROJECT_DIR$/src/source.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/style.css" afterPath="$PROJECT_DIR$/style.css" />
     </list>
     <ignored path="InteractiveCalendar.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,7 +27,7 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-39">
+            <state relative-caret-position="6">
               <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="61" />
               <folding />
             </state>
@@ -58,8 +57,8 @@
       <file leaf-file-name="source.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/source.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+            <state relative-caret-position="180">
+              <caret line="89" column="36" selection-start-line="89" selection-start-column="22" selection-end-line="89" selection-end-column="36" />
               <folding>
                 <element signature="e#27#68#0" expanded="false" />
               </folding>
@@ -86,8 +85,8 @@
       <list>
         <option value="$PROJECT_DIR$/temp" />
         <option value="$PROJECT_DIR$/style.css" />
-        <option value="$PROJECT_DIR$/src/source.js" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/src/source.js" />
       </list>
     </option>
   </component>
@@ -275,7 +274,7 @@
       <workItem from="1469173879173" duration="19378000" />
       <workItem from="1469217061792" duration="1888000" />
       <workItem from="1469236040717" duration="2317000" />
-      <workItem from="1469434153888" duration="16593000" />
+      <workItem from="1469434153888" duration="18715000" />
     </task>
     <task id="LOCAL-00001" summary="Edit to colSpan attribute for the header">
       <created>1468917777939</created>
@@ -375,11 +374,18 @@
       <option name="project" value="LOCAL" />
       <updated>1469453677267</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Next and Prev">
+      <created>1469454475358</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1469454475358</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="123298000" />
+    <option name="totallyTimeSpent" value="125420000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1985" y="-4" width="1535" height="904" extended-state="6" />
@@ -447,7 +453,8 @@
     <MESSAGE value="Fixing one hour shift style" />
     <MESSAGE value="Adding bootstrap classes to table and tbody" />
     <MESSAGE value="Add next and prev button" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add next and prev button" />
+    <MESSAGE value="Next and Prev" />
+    <option name="LAST_COMMIT_MESSAGE" value="Next and Prev" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -784,7 +791,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-39">
+        <state relative-caret-position="6">
           <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="61" />
           <folding />
         </state>
@@ -792,8 +799,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/source.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+        <state relative-caret-position="180">
+          <caret line="89" column="36" selection-start-line="89" selection-start-column="22" selection-end-line="89" selection-end-column="36" />
           <folding>
             <element signature="e#27#68#0" expanded="false" />
           </folding>

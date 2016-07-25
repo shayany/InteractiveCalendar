@@ -87,19 +87,21 @@ function createCalendar() {
 
 
     //adding modal feature to td
-    $('td').mousedown(function (event) {
+    $( "table" ).on( "selectablestop", function( event, ui ) {
+
+    //$('td').mousedown(function (event) {
         //The event value of the right click is 3
-        if (event.which == 3 && $(this).hasClass("ui-selected")) {
+        //if (event.which == 3 && $(this).hasClass("ui-selected")) {
 
             var selectedCells = document.getElementsByClassName("ui-selected"); // capture all the cells that are highlighted
-
+            console.log(selectedCells.length);
             //Adding the selected day's date to modal
             document.getElementById("modalDate").setAttribute("value",selectedCells[0].getAttribute("date"));
 
             // Regular expression for capturing the shift ID
             var patternForGroupID=/\d{4}-\d{1,2}-\d{1,2}-(\d{1,2})-(\d{1,2})/;
             //If the selected cells belong to the shift, it shows the shift details in modal
-            if(patternForGroupID.test($(this).attr("shiftid").toString())){
+            if(patternForGroupID.test($(this).attr("shiftid"))){
                 var shiftID=$(this).attr("shiftid").toString();
                 var result = patternForGroupID.exec(shiftID);
                 document.getElementById("modalStartHour").value = result[1].toString();
@@ -127,7 +129,7 @@ function createCalendar() {
             }
             document.getElementById("deleteModalButton").disabled = false;
             $("#confirm").modal("show");
-        }
+        //}
     });
 
 
