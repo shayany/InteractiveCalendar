@@ -3,9 +3,11 @@
  * Created by shayan on 18.07.16.
  */
 
+
+
 function createCalendar() {
 
-    //Number of days in each mont
+    //Number of days in each month
     var days = moment().daysInMonth();
     var wrapper = document.getElementById("wrapper");
 
@@ -107,15 +109,16 @@ function createCalendar() {
     $("table").selectable({
         filter: 'td:not(.noselect)'
     });
-}
 
+
+}
 
 
 
 $("#saveModalButton").click(function () {
 
 
-    if ($("#modalShiftID").val().toString()!=false.toString())// For editing the shift -First delete the shift and then create
+    if ($("#modalShiftID").val().toString()!=false.toString())// For editing the shift, first we delete the shift and then create the new one
     {
         deleteCells($("#modalShiftID").val().toString());
     }
@@ -129,37 +132,52 @@ $("#saveModalButton").click(function () {
 
     var cells = $("td[date='" + shiftDate + "']");
 
+
     if(startHour>endtHour){
         var temp=startHour;
         startHour=endtHour;
         endtHour=temp;
     }
 
-    for (var i = 0; i < 24; i++) {
-        if (Number(cells[i].getAttribute("hour")) >= startHour && Number(cells[i].getAttribute("hour")) <= endtHour) {
-            $(cells[i]).removeClass("cellsBorder");
-            if (Number(cells[i].getAttribute("hour")) == startHour) {
-                //cells[i].className += " shiftStartCell";
-                $(cells[i]).addClass("shiftStartCell");
-            }
-            if (Number(cells[i].getAttribute("hour")) == endtHour) {
-                $(cells[i]).addClass("shiftEndCell");
-                //cells[i].className += " shiftEndCell";
-            }
 
-            document.getElementById("modalShiftID").setAttribute("value", shiftID);
-            cells[i].setAttribute("neededDriver", driverNumber);
-            cells[i].setAttribute("shiftID", shiftID);
-            $(cells[i]).addClass("availableShift");
-            $(cells[i]).addClass("shiftCells");
-            //cells[i].className+=" availableShift";
-            //cells[i].className += " shiftCells";
-            //cells[i].style.background="red";
+    var patternForGroupID=/\d{4}-\d{1,2}-\d{1,2}-(\d{1,2})-(\d{1,2})/;
+    var overlapFlag=false;
+    for(var  i=0; i< 24;i ++){
+        if (patternForGroupID.test(cells[i].getAttribute("shiftID"))){
+            var result = patternForGroupID.exec(cells[i].getAttribute("shiftID"));
+            if (overlap(Number(result[1]),Number(result[2]),startHour,endtHour)==true){
+                alert("Please delete the previous shift!");
+                overlapFlag = true;
+                break;
+            }
         }
     }
 
+    if(!overlapFlag) {
+        for (var i = 0; i < 24; i++) {
+            if (Number(cells[i].getAttribute("hour")) >= startHour && Number(cells[i].getAttribute("hour")) <= endtHour) {
+                $(cells[i]).removeClass("cellsBorder");
+                if (Number(cells[i].getAttribute("hour")) == startHour) {
+                    //cells[i].className += " shiftStartCell";
+                    $(cells[i]).addClass("shiftStartCell");
+                }
+                if (Number(cells[i].getAttribute("hour")) == endtHour) {
+                    $(cells[i]).addClass("shiftEndCell");
+                    //cells[i].className += " shiftEndCell";
+                }
 
-    document.getElementById("deleteModalButton").disabled = false;
+                document.getElementById("modalShiftID").setAttribute("value", shiftID);
+                cells[i].setAttribute("neededDriver", driverNumber);
+                cells[i].setAttribute("shiftID", shiftID);
+                $(cells[i]).addClass("availableShift");
+                $(cells[i]).addClass("shiftCells");
+                //cells[i].className+=" availableShift";
+                //cells[i].className += " shiftCells";
+                //cells[i].style.background="red";
+            }
+        }
+        document.getElementById("deleteModalButton").disabled = false;
+    }
     $("#confirm").modal("toggle");
 });
 
@@ -199,4 +217,27 @@ function deleteCells(shiftID){
      cells[i].setAttribute("neededDriver","0");
      cells[i].setAttribute("shiftID","Y-MM-DD-SH-EH");
      }*/
+}
+
+
+//This function check two shifts have overlap on each other or not
+function overlap(startHour1,endHour1,startHour2,endHour2){
+    //console.log(startHour2,endHour2,startHour1,endHour1);
+    if(startHour2>= startHour1 && endHour2 <= endHour1){
+        console.log(1);
+        return true;
+    }
+    if(startHour2<= startHour1 && endHour2 >= endHour1) {
+        console.log(2);
+        return true;
+    }
+    //if(startHour2<=startHour1 && endHour2 >= startHour1) {
+    //    console.log(3);
+    //    return true;
+    //}
+    if( startHour2 <= endHour1 && endHour2 >= endHour1) {
+        console.log(3);
+        return true;
+    }
+    return false
 }
