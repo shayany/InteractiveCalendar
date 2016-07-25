@@ -170,7 +170,7 @@ $("#saveModalButton").click(function () {
                 cells[i].setAttribute("neededDriver", driverNumber);
                 cells[i].setAttribute("shiftID", shiftID);
                 $(cells[i]).addClass("availableShift");
-                $(cells[i]).addClass("shiftCells");
+                //$(cells[i]).addClass("shiftCells");
                 //cells[i].className+=" availableShift";
                 //cells[i].className += " shiftCells";
                 //cells[i].style.background="red";
@@ -200,7 +200,7 @@ function deleteCells(shiftID){
     }
 
     $(cells).removeClass("availableShift");
-    $(cells).removeClass("shiftCells");
+    //$(cells).removeClass("shiftCells");
     $(cells).removeClass("shiftStartCell");
     $(cells).removeClass("shiftEndCell");
     $(cells).removeClass("ui-selected"); //Unselect the cells after deletion
