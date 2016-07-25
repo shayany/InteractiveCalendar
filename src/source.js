@@ -114,7 +114,6 @@ function createCalendar() {
 }
 
 
-
 $("#saveModalButton").click(function () {
 
 
@@ -157,15 +156,18 @@ $("#saveModalButton").click(function () {
         for (var i = 0; i < 24; i++) {
             if (Number(cells[i].getAttribute("hour")) >= startHour && Number(cells[i].getAttribute("hour")) <= endtHour) {
                 $(cells[i]).removeClass("cellsBorder");
-                if (Number(cells[i].getAttribute("hour")) == startHour) {
+                if(startHour == endtHour)
+                {
+                    $(cells[i]).addClass("shiftCell");
+                }
+                else if (Number(cells[i].getAttribute("hour")) == startHour) {
                     //cells[i].className += " shiftStartCell";
                     $(cells[i]).addClass("shiftStartCell");
                 }
-                if (Number(cells[i].getAttribute("hour")) == endtHour) {
+                else if (Number(cells[i].getAttribute("hour")) == endtHour) {
                     $(cells[i]).addClass("shiftEndCell");
                     //cells[i].className += " shiftEndCell";
                 }
-
                 document.getElementById("modalShiftID").setAttribute("value", shiftID);
                 cells[i].setAttribute("neededDriver", driverNumber);
                 cells[i].setAttribute("shiftID", shiftID);
@@ -200,7 +202,7 @@ function deleteCells(shiftID){
     }
 
     $(cells).removeClass("availableShift");
-    //$(cells).removeClass("shiftCells");
+    $(cells).removeClass("shiftCell");
     $(cells).removeClass("shiftStartCell");
     $(cells).removeClass("shiftEndCell");
     $(cells).removeClass("ui-selected"); //Unselect the cells after deletion
