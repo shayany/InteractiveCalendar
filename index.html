@@ -12,19 +12,21 @@
     <link href="lib/bootstrap.css" rel="stylesheet">
 
 </head>
-<body>
+<body oncontextmenu="return false">
+
 <div class="modal fade" tabindex="-1" role="dialog" id="confirm" aria-labelledby="gridSystemModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="gridSystemModalLabel">Declare available shifts</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6">
                         Date:
-                        <input type="date" id="modalDate"  min="2016-06-1"  max="2016-07-31" required/>
+                        <input type="date" id="modalDate" required/>
                     </div>
                     <div class="col-md-6">Start:
                         <input type="number" id="modalStartHour" min="0" max="24" required/>
@@ -35,7 +37,7 @@
                         <input type="number" id="modalDriverNumber" min="1" required/>
                     </div>
                     <div class="col-md-6">End:
-                        <input type="number"  id="modalEndHour" min="0" max="24" required/>
+                        <input type="number" id="modalEndHour" min="0" max="24" required/>
                     </div>
                 </div>
             </div>
@@ -49,7 +51,7 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-<div id="wrapper">
+<div id="wrapper" class="table-responsive">
 
 </div>
 
